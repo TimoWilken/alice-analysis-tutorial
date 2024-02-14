@@ -68,7 +68,7 @@ configuration):
 
 ```bash
 export ALIBUILD_WORK_DIR="$HOME/alice/sw"
-eval "`alienv shell-helper`"
+eval "$(alienv shell-helper)"
 ```
 
 The first line tells what directory is used as "build cache", the second line installs a "shell
@@ -83,36 +83,33 @@ You need to close and reopen your terminal for the change to be effective. The d
 
 ### I don't have root permissions
 
+**WARNING: If at all possible, do not install alibuild in this way. Click the appropriate link under "Prerequisites" above and follow the instructions there.**
+
 In case you don't have root permissions, one of the possibilities is installing aliBuild under a
-user-owned directory. Start with opening your `~/.bashrc` or `~/.bash_profile` (this depends on your
-system), and add the following lines:
+user-owned directory. Start with opening your `~/.bashrc`, `~/.bash_profile`
+or `~/.zshrc` (this depends on your system), and add the following lines:
 
 ```bash
-export PYTHONUSERBASE="$HOME/user_python"
-export PATH="$PYTHONUSERBASE/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
-Now close all your terminals and reopen them to load the new configuration. Check if it works by
-printing the variable:
+Now close all your terminals and reopen them to load the new configuration.
+This operation needs to be performed only once.
+
+Now, to install or upgrade aliBuild, just do:
 
 ```bash
-echo $PYTHONUSERBASE
+python3 -m pip install alibuild --upgrade --user
 ```
-
-The operations above need to be performed only once. Now, to install or upgrade aliBuild, just do:
-
-```bash
-pip install alibuild --upgrade --user
-```
-
-> This time we did not specify `sudo` and we have added the `--user` option. The Python variable
-> `PYTHONUSERBASE` tells `pip` where to install the package.
 
 Verify you have `aliBuild` in your path:
 
 ```bash
 type aliBuild
 ```
+
+You are responsible for keeping alibuild up to date.
+Please remember to update aliBuild if you run into unexplained issues.
 
 ### I need a special version of aliBuild
 
